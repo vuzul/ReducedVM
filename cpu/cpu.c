@@ -78,7 +78,7 @@ uint16_t parseInst(uint16_t* addr,uint16_t* RAM,uint16_t* MEM){
     *addr=addrBranch[((inst>>8)&1)*((regs[target]==0)^1)*(writeInst^1)];//Updating the program counter
     printf("$%b$\n",inst);//Debugging output for the value of the instruction
     printf("(%d)\n",*addr);
-    printf("%hb,%d,%d,%d,%d,%c\n",regs[regR],regs[regA],regs[regB],regs[regC],regs[regD],regs[regD]);//Debugging output for the value of register D
+    printf("Value of R: %d, Value of A: %d, Value of B: %d, Value of C: %d, Value of D: %d\n",regs[regR],regs[regA],regs[regB],regs[regC],regs[regD]);//Debugging output for the value of register D
     //printf("&%d,%b",*addr,RAM[*addr]);
     //printf("%d,%d,%d\n",RAM[0],RAM[127],RAM[128]);
     return RAM[*addr];
