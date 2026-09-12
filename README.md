@@ -33,7 +33,7 @@ Follow these steps to build and run the project locally using CMake:
 
 3. **Run the executable:**
    ```bash
-   ./ReducedVM
+   ./RVM
    ```
    *(Note: Adjust the executable name or path depending on your operating system)
 
