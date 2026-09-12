@@ -1,5 +1,6 @@
 # ReducedVM
-A simple emulated CPU with custom RISC architecture and assembler parser in C
+A simple emulated CPU with custom RISC architecture and assembler parser in C.
+
 This project was originally developed for the **Croatian national science competition in software development** (*Natjecanje iz informatike - Razvoj softvera*) and **INOVA Zagreb 2027**
 
 ## Features
