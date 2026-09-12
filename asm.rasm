@@ -1,0 +1,13 @@
+/A short demo that calculates
+/triangular numbers.
+/Modify value in B to change output.
+B INP 12
+/
+C INP 8
+/
+SJT C
+D INP 0
+/
+D ADD D B
+B SUB B 1 J
+END
