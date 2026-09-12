@@ -1,6 +1,6 @@
 # ReducedVM
 A simple emulated CPU with custom RISC architecture and assembler parser in C
-This project was originally developed for the **Croatian national science cometition in software development** (*Natjecaje iz informatike - Razvoj softvera*) and **INOVA Zagreb 2027**
+This project was originally developed for the **Croatian national science competition in software development** (*Natjecanje iz informatike - Razvoj softvera*) and **INOVA Zagreb 2027**
 
 ## Features
  - A custom emulated CPU
@@ -16,7 +16,26 @@ See **DOCUMENTATION.txt**
  - CMake 3.15.0+
 
 ### Compiling and running
-See DOCUMENTATION.txt
+Follow these steps to build and run the project locally using CMake:
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com
+   cd ReducedVM
+   ```
+
+2. **Generate the build system and compile:**
+   ```bash
+   mkdir build && cd build
+   cmake ..
+   cmake --build .
+   ```
+
+3. **Run the executable:**
+   ```bash
+   ./ReducedVM
+   ```
+   *(Note: Adjust the executable name or path depending on your operating system)
 
 ## License
 This project is licensed under the MIT license, meaning any usage, modification, and publication is permitted, as long as the original creator (*vuzul*) is credited.
