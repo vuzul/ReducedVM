@@ -20,7 +20,7 @@ Follow these steps to build and run the project locally using CMake:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com
+   git clone https://github.com/vuzul/ReducedVm.git
    cd ReducedVM
    ```
 
