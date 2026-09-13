@@ -13,7 +13,7 @@ See **DOCUMENTATION.txt**
 
 ## Running
 ### Prerequisites
- - C Compiler that supports CMake
+ - C Compiler with CMake support (GCC, Clang, MSVC...)
  - CMake 3.15.0+
 
 ### Compiling and running
