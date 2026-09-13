@@ -34,9 +34,12 @@ Follow these steps to build and run the project locally using CMake:
 
 3. **Run the executable:**
    ```bash
+   ./RVM.exe
+   ```(Windows)
+   or
+   ```bash
    ./RVM
-   ```
-   *(Note: Adjust the executable name or path depending on your operating system)
+   ```(Mac/Linux)
 
 ## License
 This project is licensed under the MIT license, meaning any usage, modification, and publication is permitted, as long as the original creator (*vuzul*) is credited.
