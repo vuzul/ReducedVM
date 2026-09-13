@@ -1,7 +1,7 @@
 /A short demo that calculates
 /triangular numbers.
 /Modify value in B to change output.
-B INP 12
+B INP 5
 /
 C INP 8
 /
