@@ -46,3 +46,6 @@ Follow these steps to build and run the project locally using CMake:
 
 ## License
 This project is licensed under the MIT license, meaning any usage, modification, and publication is permitted, as long as the original creator (*vuzul*) is credited.
+
+## Special note
+Due to the nature of the competitions, **no pull requests will be merged**. All pull requests will be immediatly closed. If you still want to contribute, submit an issue.

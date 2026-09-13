@@ -4,6 +4,7 @@ Configure CMake (only needs to be done once)
 Run cmake --build build in local root (only need to be done once after each update)
 Run ./build/RVM.exe (Windows) or ./build/RVM (Mac/Linux) in local root
 Simple syntax:
+Comments start with slash
 (X) INST Y Z (J):
 Calculates INST with Y anc Z as arguments, (optional) writes result to register defined in X, (optional) jumps if the result is not 0
 SJT X:
@@ -22,3 +23,4 @@ Read only registers:
 1 stores 1
 X stores -1 (important for bitmasks)
 NOTE: Every program MUST end with "END" (without quotes)
+NOTE 2: Every INP instruction counts as 2 instructions when calculating jumps. It is a good idea to put an empty comment after each INP instruction. There are no plans to fix this.
