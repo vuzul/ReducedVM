@@ -22,7 +22,7 @@ Follow these steps to build and run the project locally using CMake:
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/vuzul/ReducedVm.git
-   cd ReducedVM
+   cd ReducedVm
    ```
 
 2. **Generate the build system and compile:**
@@ -30,16 +30,17 @@ Follow these steps to build and run the project locally using CMake:
    mkdir build && cd build
    cmake ..
    cmake --build .
+   cd ..
    ```
 
 3. **Run the executable:**
    ```bash
-   ./RVM.exe
+   ./build/RVM.exe
    ```
    (Windows)
    or
    ```bash
-   ./RVM
+   ./build/RVM
    ```
    (Mac/Linux)
 
