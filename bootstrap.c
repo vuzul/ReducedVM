@@ -26,6 +26,7 @@ uint16_t* inpASM(){
     intVals['0']=8;
     intVals['1']=9;
     intVals['X']=10;
+    intVals['I']=11;
     int endcond=0;
     while(!endcond){
         memset(input,0,49);
@@ -112,30 +113,28 @@ uint16_t* inpASM(){
                     }break;
                 }
                 res|=opcode<<9;
-                if(opcode!=3){
-                    i+=1;
-                    int op0=intVals[input[i]];
-                    i+=2;
-                    int op1=intVals[input[i]];
-                    i+=2;
-                    printf("#%c",input[i]);
-                    int jflag=input[i]=='J';
-                    res|=jflag<<8;
-                    res|=op0<<4;
-                    res|=op1;
-                    printf("$%b,%b,%b,%b,%b,%b\n",target,opcode,jflag,op0,op1,res);
-                    resL[resP]=res;
-                    resP++;
-                }else{
+                i+=1;
+                int op0=intVals[input[i]];
+                i+=2;
+                int op1=intVals[input[i]];
+                i+=2;
+                printf("#%c",input[i]);
+                int jflag=input[i]=='J';
+                res|=jflag<<8;
+                res|=op0<<4;
+                res|=op1;
+                printf("$%b,%b,%b,%b,%b,%b\n",target,opcode,jflag,op0,op1,res);
+                resL[resP]=res;
+                resP++;
+                printf("##############%s\n",input);
+                if(op0==11|op1==11){
+                    memset(input,0,49);
+                    fgets(input,49,inputStream);
                     int16_t s;
-                    char garb1;
-                    char garb2[4];
-                    sscanf(input,"%c %3s %hd",&garb1,garb2,&s);
+                    sscanf(input,"%hd",&s);
                     i=0;
-                    //printf("#%d\n",s);
+                    printf("#%d\n",s);
                     printf("$%b,%b,%b,%b\n",target,opcode,s,res);
-                    resL[resP]=res;
-                    resP++;
                     resL[resP]=s;
                     resP++;
                 }

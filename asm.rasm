@@ -1,13 +1,12 @@
-/A short demo that calculates
-/triangular numbers.
-/Modify value in B to change output.
-B INP 5
-/
-C INP 8
-/
+B ADD I 0
+7
+C ADD I 0
+7
 SJT C
-D INP 0
-/
+D ADD 0 0
 D ADD D B
 B SUB B 1 J
 END
+/A short demo that calculates
+/triangular numbers.
+/Modify value in B to change output.
