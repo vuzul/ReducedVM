@@ -9,8 +9,6 @@
  - Calculates INST with Y anc Z as arguments, (optional) writes result to register defined in X, (optional) jumps if the result is not 0
 `SJT X`:
  - Sets jump target (instruction to jump to with J) to value in register X
-`X INP N`:
- - Inputs N (decimal number) to register X
 ## Register outline:
 ### R/W registers:
  - General purpose registers are A, B and C
@@ -22,6 +20,9 @@
  - 0 stores, well, 0
  - 1 stores 1
  - X stores -1 (important for bitmasks)
+### I register
+ - Stores number from next instruction 
+ - EG. `A ADD I 0` in line 1 and `42` in line 2 sets A to 42
 ## Notes
 NOTE: Every program MUST end with "END" (without quotes)
 NOTE 2: Every INP instruction counts as 2 instructions when calculating jumps. It is a good idea to put an empty comment after each INP instruction. There are no plans to fix this.
