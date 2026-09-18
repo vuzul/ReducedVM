@@ -5,10 +5,10 @@
  - Run ./build/RVM.exe (Windows) or ./build/RVM (Mac/Linux) in local root
 ## Simple syntax:
  - Comments start with slash
-`(X) INST Y Z (J)`:
- - Calculates INST with Y anc Z as arguments, (optional) writes result to register defined in X, (optional) jumps if the result is not 0
-`SJT X`:
- - Sets jump target (instruction to jump to with J) to value in register X
+ - `(X) INST Y Z (J)`:
+Calculates INST with Y anc Z as arguments, (optional) writes result to register defined in X, (optional) jumps if the result is not 0
+ - `SJT X`:
+Sets jump target (instruction to jump to with J) to value in register X
 ## Register outline:
 ### R/W registers:
  - General purpose registers are A, B and C
