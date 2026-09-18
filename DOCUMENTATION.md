@@ -25,4 +25,3 @@
  - EG. `A ADD I 0` in line 1 and `42` in line 2 sets A to 42
 ## Notes
 NOTE: Every program MUST end with "END" (without quotes)
-NOTE 2: Every INP instruction counts as 2 instructions when calculating jumps. It is a good idea to put an empty comment after each INP instruction. There are no plans to fix this.
