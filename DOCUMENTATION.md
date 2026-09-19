@@ -33,7 +33,8 @@ SJT C
 D ADD 0 0
 D ADD D B
 B SUB B 1 J
-END```
+END
+```
  - `B ADD I 0` Adds number from next instruction to B
  - `7` Defines number contained in I from previous instruction as 7
  - `C ADD I 0`, `7` do the same thing to C
