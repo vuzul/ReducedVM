@@ -45,6 +45,7 @@ uint16_t* inpASM(){
                 }
                 res|=target<<13;
                 uint8_t opcode=0;
+                int doMainInst=1;
                 switch(input[i]){
                     case 'A': switch(input[i+1]){
                         case 'D': switch(input[i+2]){
@@ -110,33 +111,59 @@ uint16_t* inpASM(){
                         case 'X': switch(input[i+2]){
                             case 'R': opcode=13; i+=3; break;
                         }break;
+                    }case 'P': switch(input[i+1]){
+                        case 'S': switch(input[i+2]){
+                            case 'H': {
+                                resL[resP]=0b1000000010000110;
+                                resP++;
+                                resL[resP]=0b1010000000000000|intVals[input[i+4]];
+                                resP++;
+                                resL[resP]=0b1100000001101001;
+                                resP++;
+                                doMainInst=0;
+                            }break;
+                        }break;
+                        case 'O': switch(input[i+2]){
+                            case 'P': {
+                                resL[resP]=0b1100001001101001;
+                                resP++;
+                                resL[resP]=0b1000000010000110;
+                                resP++;
+                                resL[resP]=0b10000101|(intVals[input[i+4]]<<13);
+                                resP++;
+                                doMainInst=0;
+                            }break;
+                        }break;
                     }break;
+                    
                 }
-                res|=opcode<<9;
-                i+=1;
-                int op0=intVals[input[i]];
-                i+=2;
-                int op1=intVals[input[i]];
-                i+=2;
-                printf("#%c",input[i]);
-                int jflag=input[i]=='J';
-                res|=jflag<<8;
-                res|=op0<<4;
-                res|=op1;
-                printf("$%b,%b,%b,%b,%b,%b\n",target,opcode,jflag,op0,op1,res);
-                resL[resP]=res;
-                resP++;
-                printf("##############%s\n",input);
-                if(op0==11|op1==11){
-                    memset(input,0,49);
-                    fgets(input,49,inputStream);
-                    int16_t s;
-                    sscanf(input,"%hd",&s);
-                    i=0;
-                    printf("#%d\n",s);
-                    printf("$%b,%b,%b,%b\n",target,opcode,s,res);
-                    resL[resP]=s;
+                if(doMainInst){
+                    res|=opcode<<9;
+                    i+=1;
+                    int op0=intVals[input[i]];
+                    i+=2;
+                    int op1=intVals[input[i]];
+                    i+=2;
+                    printf("#%c",input[i]);
+                    int jflag=input[i]=='J';
+                    res|=jflag<<8;
+                    res|=op0<<4;
+                    res|=op1;
+                    printf("$%b,%b,%b,%b,%b,%b\n",target,opcode,jflag,op0,op1,res);
+                    resL[resP]=res;
                     resP++;
+                    printf("##############%s\n",input);
+                    if(op0==11|op1==11){
+                        memset(input,0,49);
+                        fgets(input,49,inputStream);
+                        int16_t s;
+                        sscanf(input,"%hd",&s);
+                        i=0;
+                        printf("#%d\n",s);
+                        printf("$%b,%b,%b,%b\n",target,opcode,s,res);
+                        resL[resP]=s;
+                        resP++;
+                    }
                 }
             }
             i=0;
