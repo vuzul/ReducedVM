@@ -50,4 +50,4 @@ END
  - `B SUB B 1 J` subtracts 1 from B, and jumps to target defined in SJT (7) if the result is not 0
  - `END` marks the end of the program
 ## Notes
-NOTE: Every program MUST end with `END`
+Every program **must** end with `END`
