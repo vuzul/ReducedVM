@@ -23,6 +23,12 @@ Sets jump target (instruction to jump to with J) to value in register X
 ### I register
  - Stores number from next instruction 
  - EG. `A ADD I 0` in line 1 and `42` in line 2 sets A to 42
+## Opcode outline:
+ - ADD, SUB, MUL are arithmetic operations (add, sub, mult)
+ - CLT, CEQ, CGT, CNQ are comparisons (less than, equal, greater than, not equal)
+ - AND, BOR, XOR are logic operations (AND, OR, XOR)
+ - NAD, NOR, NXR are negated versions of the same operations
+ - BSL, BSR are bit shifts (left and right)
 ##Example
 ```
 B ADD I 0
