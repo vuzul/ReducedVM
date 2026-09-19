@@ -29,8 +29,7 @@ Sets jump target (instruction to jump to with J) to value in register X
  - AND, BOR, XOR are logic operations (AND, OR, XOR)
  - NAD, NOR, NXR are negated versions of the same operations
  - BSL, BSR are bit shifts (left and right)
-
-##Example
+## Example
 ```
 B ADD I 0
 7
