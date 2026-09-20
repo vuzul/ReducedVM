@@ -2,3 +2,6 @@
 .vscode/
 asm.rasm.storage
 storage.rasm
+report.txt
+rules.txt
+misra.json

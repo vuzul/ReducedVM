@@ -2,11 +2,8 @@
 #include <stdio.h>
 #include "cpu.h"
 
-static uint16_t J;
-static uint16_t void16_t;
-static uint16_t* JBranch[2]={&void16_t,&J};
 static int16_t regs[256];
-static enum regNames{
+static enum{
     regA=4,
     regB=1,
     regC=2,
@@ -19,7 +16,7 @@ static enum regNames{
     regX=10,
     regI=11
 };
-void init(){
+void init(void){
     regs[regN]=0;
     regs[regL]=1;
     regs[regX]=(int16_t)-1;
@@ -37,7 +34,7 @@ static void calc(int16_t* res,int16_t op0,int16_t op1,uint16_t* J){
     res[4]=op0<op1;//Less than
     res[5]=op0==op1;//Equal
     res[6]=op0>op1;//Greater than
-    res[7]=(op0==op1)^1;   //Not equal
+    res[7]=(uint16_t)(op0==op1)^1U;   //Not equal
     //Logic unit
     res[8]=op0&op1;   //AND
     res[9]=op0|op1;   //OR
@@ -46,12 +43,15 @@ static void calc(int16_t* res,int16_t op0,int16_t op1,uint16_t* J){
     res[12]=(op0|op1)^(int16_t)-1;//NOR
     res[13]=(op0^op1)^(int16_t)-1;//XNOR
     //Barrel shifts
-    res[14]=op0<<op1;//BSL, Barrel shift left
-    res[15]=op0>>op1;//BSR, Barrel shift right
+    res[14]=((uint16_t)op0)<<(uint16_t)op1;//BSL, Barrel shift left
+    res[15]=((uint16_t)op0)>>(uint16_t)op1;//BSR, Barrel shift right
 }
 
 
-uint16_t parseInst(uint16_t* addr,uint16_t* RAM,uint16_t* MEM){
+uint16_t parseInst(uint16_t* addr,uint16_t* RAM){
+    static uint16_t void16_t;
+    static uint16_t J;
+    static uint16_t* JBranch[2]={&void16_t,&J};
     int16_t res[16];//Initialising result array for ALU
     //Instructions are 16 bits long (see line 59 of this file for instruction format)
     uint16_t inst=RAM[*addr];//Instruction fetch
@@ -60,20 +60,20 @@ uint16_t parseInst(uint16_t* addr,uint16_t* RAM,uint16_t* MEM){
     regs[regR]=RAM[oldA];//Loading data from RAM
     regs[regI]=RAM[*addr+1];
     //target,target,target,inst,inst,inst,inst,J,op0,op0,op0,op0,op1,op1,op1,op1
-    int16_t op1=regs[inst&15];//Getting the second operand from the register file
-    int16_t op0=regs[(inst>>4)&15];//Getting the first operand from the register file
+    int16_t op1=regs[inst&15U];//Getting the second operand from the register file
+    int16_t op0=regs[(inst>>4)&15U];//Getting the first operand from the register file
     //ADD,SUB,MUL,INP,CLT,CEQ,CGT,CNQ||AND,BOR,XOR,NAD,NOR,NXR,BSL,BSR||SJT(TAR=0, J=0)
-    uint8_t opcode=(inst>>9)&15;//Getting the opcode from the instruction
-    uint8_t target=(inst>>13)&15;//Getting the target register from the instruction
+    uint8_t opcode=(uint8_t)(inst>>9)&15U;//Getting the opcode from the instruction
+    uint8_t target=(uint8_t)(inst>>13)&15U;//Getting the target register from the instruction
     printf("#%b\n",inst>>8);
-    *JBranch[(((inst>>8)&1)^1)*(target==0)]=op0-1;//Setting the jump address
+    *JBranch[(((inst>>8)&1U)^1U)*(uint8_t)(target==0U)]=op0-1;//Setting the jump address
     calc(res,op0,op1,&J);//Sending data to ALU
     res[3]=RAM[*addr];//Overwriting the INP instruction result with the lower 8 bits of the instruction
     regs[target]=res[opcode];//Writing the result to the target register
     //printf("&%d,%d,%d\n",oldA,regs[regA],regs[regR]);
     RAM[oldA]=regs[regR];//Sending second half of data to RAM
     uint16_t addrBranch[2];//Initialising branch array for jump instructions
-    addrBranch[0]=(*addr)+1+((inst&15)==11|((inst>>4)&15)==11);//Setting the next instruction address
+    addrBranch[0]=(*addr)+1U+(uint16_t)(((inst&15U)==11U)||((inst>>4)&15U)==11U);//Setting the next instruction address
     addrBranch[1]=J;//Setting the jump address
     printf("(%d)\n",*addr);
     *addr=addrBranch[((inst>>8)&1)&((regs[target]==0)^1)];//Updating the program counter

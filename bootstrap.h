@@ -3,6 +3,6 @@
 
 #include <stdint.h>
 
-uint16_t* inpASM();
+uint16_t* inpASM(void);
 
 #endif
